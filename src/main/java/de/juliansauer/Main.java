@@ -4,6 +4,8 @@ import com.tinkerforge.*;
 
 import java.io.IOException;
 
+import static de.juliansauer.CoffeeLevel.EMPTY;
+
 public class Main {
 
     private static final String HOST = "localhost";
@@ -17,9 +19,18 @@ public class Main {
 
         connection.connect(HOST, PORT);
 
-        int weight = loadCell.getWeight();
-        System.out.println("Weight: " + weight + " g");
+        int period = 1000; // Calls listeners every 1s
+        loadCell.setDebouncePeriod(period);
+        loadCell.setWeightCallbackThreshold('i', EMPTY.getMinWeight(), EMPTY.getMaxWeight()); // Calls weightReachedListener when weight is in between these values
+        loadCell.setWeightCallbackPeriod(period);
 
+        CoffeeWeightReachedListener weightReachedListener = new CoffeeWeightReachedListener(5);
+        CoffeeWeightListener currentWeightListener = new CoffeeWeightListener(weightReachedListener);
+        loadCell.addWeightReachedListener(weightReachedListener);
+        loadCell.addWeightListener(currentWeightListener);
+
+        System.out.println("Press enter to exit");
+        System.in.read();
         connection.disconnect();
 
     }
