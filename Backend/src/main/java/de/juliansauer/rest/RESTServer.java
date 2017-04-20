@@ -8,7 +8,7 @@ import org.eclipse.jetty.servlet.ServletHolder;
 import org.glassfish.jersey.server.ResourceConfig;
 import org.glassfish.jersey.servlet.ServletContainer;
 
-public class RESTServer {
+public class RESTServer extends Thread {
 
     private Server server;
 
@@ -22,20 +22,37 @@ public class RESTServer {
         context.addServlet(servlet, "/*");
     }
 
-    public void startRestServer() {
+    @Override
+    public void run() {
 
         try {
             server.start();
             server.join();
         } catch (InterruptedException e) {
-            e.printStackTrace();
+            System.out.println("RESTServer interrupted.");
         } catch (Exception e) {
             e.printStackTrace();
-        } finally {
-            server.destroy();
-            for (CoffeeScale scale : Main.getScales())
-                scale.closeConnection();
         }
+
+    }
+
+    /**
+     * Stops Jetty and closes CoffeeScale connections.
+     */
+    @Override
+    public void interrupt() {
+
+        super.interrupt();
+
+        try {
+            server.stop();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        server.destroy();
+        for (CoffeeScale scale : Main.getScales())
+            scale.closeConnection();
 
     }
 
