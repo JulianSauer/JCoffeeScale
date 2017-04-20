@@ -9,11 +9,11 @@ import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 
-@Path("jcs")
+@Path("")
 public class RESTfulService {
 
     @GET
-    @Path("CoffeeLevel")
+    @Path("levels")
     @Produces(MediaType.TEXT_PLAIN)
     public String getLevel() {
 
@@ -25,7 +25,7 @@ public class RESTfulService {
     }
 
     @GET
-    @Path("Refill")
+    @Path("refills")
     @Produces(MediaType.TEXT_PLAIN)
     public String getCansWaitingForRefill() {
 
