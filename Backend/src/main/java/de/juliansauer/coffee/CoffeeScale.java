@@ -62,6 +62,10 @@ public class CoffeeScale {
         return weightListener.getCurrentLevel();
     }
 
+    public String getUID() {
+        return UID;
+    }
+
     private void initializeConnection() {
         connection = new IPConnection();
         loadCell = new BrickletLoadCell(UID, connection);
