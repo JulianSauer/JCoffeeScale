@@ -2,6 +2,9 @@ package de.juliansauer.coffee;
 
 import com.tinkerforge.BrickletLoadCell;
 
+/**
+ * Sends a message if an empty can is on the scale for a few ticks.
+ */
 public class CoffeeWeightReachedListener implements BrickletLoadCell.WeightReachedListener {
 
     private int emptyCounter;

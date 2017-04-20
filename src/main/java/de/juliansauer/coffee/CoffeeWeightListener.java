@@ -2,6 +2,9 @@ package de.juliansauer.coffee;
 
 import com.tinkerforge.BrickletLoadCell;
 
+/**
+ * Resets the counter if a non-empty can is put on the scale.
+ */
 public class CoffeeWeightListener implements BrickletLoadCell.WeightListener {
 
     private CoffeeWeightReachedListener reachedListener;
