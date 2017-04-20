@@ -1,4 +1,4 @@
-package de.juliansauer;
+package de.juliansauer.coffee;
 
 import com.tinkerforge.BrickletLoadCell;
 

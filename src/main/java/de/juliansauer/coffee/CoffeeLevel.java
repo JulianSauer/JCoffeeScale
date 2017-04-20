@@ -1,4 +1,4 @@
-package de.juliansauer;
+package de.juliansauer.coffee;
 
 /**
  * Defines the weights of different coffee levels.

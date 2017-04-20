@@ -1,10 +1,12 @@
 package de.juliansauer;
 
 import com.tinkerforge.*;
+import de.juliansauer.coffee.CoffeeWeightListener;
+import de.juliansauer.coffee.CoffeeWeightReachedListener;
 
 import java.io.IOException;
 
-import static de.juliansauer.CoffeeLevel.EMPTY;
+import static de.juliansauer.coffee.CoffeeLevel.EMPTY;
 
 public class Main {
 
