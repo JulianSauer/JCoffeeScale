@@ -15,6 +15,8 @@ public class CoffeeScale {
     private IPConnection connection;
     private BrickletLoadCell loadCell;
 
+    private CoffeeWeightListener weightListener;
+
     /**
      * @param uid  uid of the load cell bricklet
      * @param host ip of the scale
@@ -42,9 +44,9 @@ public class CoffeeScale {
      */
     public void startListening(int ticks) {
         CoffeeWeightReachedListener weightReachedListener = new CoffeeWeightReachedListener(ticks);
-        CoffeeWeightListener currentWeightListener = new CoffeeWeightListener(weightReachedListener);
+        weightListener = new CoffeeWeightListener(weightReachedListener);
         loadCell.addWeightReachedListener(weightReachedListener);
-        loadCell.addWeightListener(currentWeightListener);
+        loadCell.addWeightListener(weightListener);
     }
 
     public void closeConnection() {
@@ -54,6 +56,10 @@ public class CoffeeScale {
         } catch (NotConnectedException e) {
             e.printStackTrace();
         }
+    }
+
+    public CoffeeLevel getCurrentLevel() {
+        return weightListener.getCurrentLevel();
     }
 
     private void initializeConnection() {
