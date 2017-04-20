@@ -10,6 +10,7 @@ public class CoffeeWeightListener implements BrickletLoadCell.WeightListener {
     private CoffeeWeightReachedListener reachedListener;
 
     private CoffeeLevel currentLevel;
+    private int currentWeight;
 
     protected CoffeeWeightListener(CoffeeWeightReachedListener reachedListener) {
         this.reachedListener = reachedListener;
@@ -17,6 +18,7 @@ public class CoffeeWeightListener implements BrickletLoadCell.WeightListener {
     }
 
     public void weight(int weight) {
+        currentWeight = weight;
         currentLevel = CoffeeLevel.getLevelFor(weight);
         if (currentLevel != CoffeeLevel.EMPTY)
             reachedListener.resetCounter();
@@ -25,8 +27,12 @@ public class CoffeeWeightListener implements BrickletLoadCell.WeightListener {
             System.out.println("The scale is only build for less than 5kg. Please be careful!");
     }
 
-    public CoffeeLevel getCurrentLevel() {
+    protected CoffeeLevel getCurrentLevel() {
         return currentLevel;
+    }
+
+    protected int getCurrentWeight() {
+        return currentWeight;
     }
 
 }

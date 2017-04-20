@@ -16,6 +16,7 @@ public class CoffeeScale {
     private BrickletLoadCell loadCell;
 
     private CoffeeWeightListener weightListener;
+    private CoffeeWeightReachedListener weightReachedListener;
 
     /**
      * @param uid  uid of the load cell bricklet
@@ -43,7 +44,7 @@ public class CoffeeScale {
      * @param ticks Number of ticks before a message is send
      */
     public void startListening(int ticks) {
-        CoffeeWeightReachedListener weightReachedListener = new CoffeeWeightReachedListener(ticks);
+        weightReachedListener = new CoffeeWeightReachedListener(ticks);
         weightListener = new CoffeeWeightListener(weightReachedListener);
         loadCell.addWeightReachedListener(weightReachedListener);
         loadCell.addWeightListener(weightListener);
@@ -60,6 +61,14 @@ public class CoffeeScale {
 
     public CoffeeLevel getCurrentLevel() {
         return weightListener.getCurrentLevel();
+    }
+
+    public int getCurrentWeight() {
+        return weightListener.getCurrentWeight();
+    }
+
+    public boolean isWaitingForNewCan() {
+        return weightReachedListener.isWaitingForNewCan();
     }
 
     public String getUID() {

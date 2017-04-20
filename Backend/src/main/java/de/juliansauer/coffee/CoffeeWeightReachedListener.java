@@ -31,6 +31,10 @@ public class CoffeeWeightReachedListener implements BrickletLoadCell.WeightReach
 
     }
 
+    protected boolean isWaitingForNewCan() {
+        return waitingForNewCan;
+    }
+
     protected void resetCounter() {
         emptyCounter = emptyCounterMax;
         waitingForNewCan = false;

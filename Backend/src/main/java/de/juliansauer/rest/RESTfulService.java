@@ -24,4 +24,17 @@ public class RESTfulService {
         return json.toString();
     }
 
+    @GET
+    @Path("Refill")
+    @Produces(MediaType.TEXT_PLAIN)
+    public String getCansWaitingForRefill() {
+
+        JSONObject json = new JSONObject();
+        for (CoffeeScale scale : Main.getScales())
+            if (scale.isWaitingForNewCan())
+                json.put(scale.getUID(), scale.getCurrentWeight());
+
+        return json.toString();
+    }
+
 }
