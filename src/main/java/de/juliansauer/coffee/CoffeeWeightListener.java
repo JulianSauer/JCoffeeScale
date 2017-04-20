@@ -6,7 +6,7 @@ public class CoffeeWeightListener implements BrickletLoadCell.WeightListener {
 
     private CoffeeWeightReachedListener reachedListener;
 
-    public CoffeeWeightListener(CoffeeWeightReachedListener reachedListener) {
+    protected CoffeeWeightListener(CoffeeWeightReachedListener reachedListener) {
         this.reachedListener = reachedListener;
     }
 

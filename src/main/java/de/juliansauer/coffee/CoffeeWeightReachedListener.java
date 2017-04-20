@@ -10,11 +10,10 @@ public class CoffeeWeightReachedListener implements BrickletLoadCell.WeightReach
     private boolean waitingForNewCan;
 
     /**
-     * @param emptyCounterMax Defines how many cycles the listener waits before sending a notification that the can is
-     *                        empty.
+     * @param ticks Defines how many cycles the listener waits before sending a notification that the can is empty.
      */
-    public CoffeeWeightReachedListener(int emptyCounterMax) {
-        this.emptyCounterMax = emptyCounterMax;
+    protected CoffeeWeightReachedListener(int ticks) {
+        this.emptyCounterMax = ticks;
         resetCounter();
     }
 
@@ -29,7 +28,7 @@ public class CoffeeWeightReachedListener implements BrickletLoadCell.WeightReach
 
     }
 
-    public void resetCounter() {
+    protected void resetCounter() {
         emptyCounter = emptyCounterMax;
         waitingForNewCan = false;
     }

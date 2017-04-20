@@ -18,7 +18,7 @@ public enum CoffeeLevel {
         this.maxWeight = maxWeight;
     }
 
-    public static CoffeeLevel getLevelFor(int weight) {
+    protected static CoffeeLevel getLevelFor(int weight) {
         for (CoffeeLevel fillStatus : CoffeeLevel.values()) {
             if (weight > fillStatus.minWeight && weight < fillStatus.maxWeight)
                 return fillStatus;
@@ -26,11 +26,11 @@ public enum CoffeeLevel {
         return NO_CAN;
     }
 
-    public int getMinWeight() {
+    protected int getMinWeight() {
         return minWeight;
     }
 
-    public int getMaxWeight() {
+    protected int getMaxWeight() {
         return maxWeight;
     }
 
