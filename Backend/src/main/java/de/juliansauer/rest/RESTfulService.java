@@ -37,4 +37,21 @@ public class RESTfulService {
         return json.toString();
     }
 
+    @GET
+    @Path("scales")
+    @Produces(MediaType.TEXT_PLAIN)
+    public String getScales() {
+
+        JSONObject json = new JSONObject();
+        for (CoffeeScale scale : Main.getScales()) {
+            JSONObject[] values = new JSONObject[3];
+            values[0] = new JSONObject().put("level", scale.getCurrentLevel());
+            values[1] = new JSONObject().put("weight", scale.getCurrentWeight());
+            values[2] = new JSONObject().put("refill", scale.isWaitingForNewCan());
+            json.put(scale.getUID(), values);
+        }
+
+        return json.toString();
+    }
+
 }
