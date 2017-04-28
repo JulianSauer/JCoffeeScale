@@ -15,6 +15,7 @@ public class RESTServer extends Thread {
     public RESTServer(int port) {
         ResourceConfig config = new ResourceConfig();
         config.packages("de.juliansauer.rest");
+        config.register(new CORSFilter());
         ServletHolder servlet = new ServletHolder(new ServletContainer(config));
 
         server = new Server(port);

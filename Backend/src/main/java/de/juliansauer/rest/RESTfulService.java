@@ -2,6 +2,7 @@ package de.juliansauer.rest;
 
 import de.juliansauer.Main;
 import de.juliansauer.coffee.CoffeeScale;
+import org.json.JSONArray;
 import org.json.JSONObject;
 
 import javax.ws.rs.GET;
@@ -42,16 +43,17 @@ public class RESTfulService {
     @Produces(MediaType.TEXT_PLAIN)
     public String getScales() {
 
-        JSONObject json = new JSONObject();
-        for (CoffeeScale scale : Main.getScales()) {
-            JSONObject[] values = new JSONObject[3];
-            values[0] = new JSONObject().put("level", scale.getCurrentLevel());
-            values[1] = new JSONObject().put("weight", scale.getCurrentWeight());
-            values[2] = new JSONObject().put("refill", scale.isWaitingForNewCan());
-            json.put(scale.getUID(), values);
+        JSONArray scales = new JSONArray();
+        for (CoffeeScale coffeeScale : Main.getScales()) {
+            JSONObject jsonSCale = new JSONObject();
+            jsonSCale.put("uid", coffeeScale.getUID());
+            jsonSCale.put("level", coffeeScale.getCurrentLevel());
+            jsonSCale.put("weight", coffeeScale.getCurrentWeight());
+            jsonSCale.put("refill", coffeeScale.isWaitingForNewCan());
+            scales.put(jsonSCale);
         }
+        return scales.toString();
 
-        return json.toString();
     }
 
 }
