@@ -61,15 +61,14 @@
                 <version>1.6.0</version>
                 <executions>
                     <execution>
-                        <phase>test</phase>
                         <goals>
                             <goal>java</goal>
                         </goals>
-                        <configuration>
-                            <mainClass>de.juliansauer.Main</mainClass>
-                        </configuration>
                     </execution>
                 </executions>
+                <configuration>
+                    <mainClass>de.juliansauer.Main</mainClass>
+                </configuration>
             </plugin>
         </plugins>
     </build>
