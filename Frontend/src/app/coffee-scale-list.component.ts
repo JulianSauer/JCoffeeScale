@@ -26,7 +26,7 @@ export class CoffeeScaleListComponent implements OnInit {
   getStyle(uid: String) {
     switch (this.getScale(uid).level) {
       case "NO_CAN":
-        return "#7cb637";
+        return "#929292";
       case "EMPTY":
         return "#8b1b2d";
       case "FULL":
