@@ -22,10 +22,7 @@ public class Main {
 
     private static void addScales() {
         scales = new ArrayList<>();
-
-        CoffeeScale scale = new CoffeeScale("B12", "localhost", 4223);
-        scale.startListening();
-
+        CoffeeScale scale = new CoffeeScale("B12", "localhost", 4223, 5);
         scales.add(scale);
     }
 

@@ -23,31 +23,13 @@ public class CoffeeScale {
      * @param host ip of the scale
      * @param port port of the scale
      */
-    public CoffeeScale(String uid, String host, int port) {
+    public CoffeeScale(String uid, String host, int port, int ticks) {
         UID = uid;
         HOST = host;
         PORT = port;
         initializeConnection();
         configureLoadCell(1000, EMPTY);
-    }
-
-    /**
-     * Uses a default value of ticks.
-     */
-    public void startListening() {
-        startListening(5);
-    }
-
-    /**
-     * Sends a message after a certain number of ticks if the weight is between the configured interval.
-     *
-     * @param ticks Number of ticks before a message is send
-     */
-    public void startListening(int ticks) {
-        weightReachedListener = new CoffeeWeightReachedListener(ticks);
-        weightListener = new CoffeeWeightListener(weightReachedListener);
-        loadCell.addWeightReachedListener(weightReachedListener);
-        loadCell.addWeightListener(weightListener);
+        startListening(ticks);
     }
 
     public void closeConnection() {
@@ -100,6 +82,18 @@ public class CoffeeScale {
         } catch (TimeoutException | NotConnectedException e) {
             e.printStackTrace();
         }
+    }
+
+    /**
+     * Sends a message after a certain number of ticks if the weight is between the configured interval.
+     *
+     * @param ticks Number of ticks before a message is send
+     */
+    private void startListening(int ticks) {
+        weightReachedListener = new CoffeeWeightReachedListener(ticks);
+        weightListener = new CoffeeWeightListener(weightReachedListener);
+        loadCell.addWeightReachedListener(weightReachedListener);
+        loadCell.addWeightListener(weightListener);
     }
 
 }
