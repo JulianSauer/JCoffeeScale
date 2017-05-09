@@ -5,11 +5,11 @@
 
 3) Anschließen über USB
 
-![Brick Viewer - Load Cell](http://imgur.com/Keai4kA)
+![Brick Viewer - Load Cell](http://i.imgur.com/Keai4kA.png)
 
 4) Einwählen in WLAN
 
-![Brick Viewer - WLAN](http://imgur.com/hoSjjj5)
+![Brick Viewer - WLAN](http://i.imgur.com/hoSjjj5.png)
 
 5) [Erstellen eines neuen Maven-Projekts](https://www.tinkerforge.com/en/doc/Software/API_Bindings_Java.html)
 
@@ -19,23 +19,12 @@
 
 8) RESTful Service mit Jetty Server
 
-Beispiel:
-
-```
-[
-  {
-    "uid":"B12",
-    "refill":false,
-    "level":"NO_CAN",
-    "weight":0
-  }
-]
-```
+Beispiel: ```[{"uid":"B12","refill":false,"level":"NO_CAN","weight":0}]```
 
 9) Erstellen eines neuen Angular 2 Projekts über angular/cli
 
 10) Auslesen und Darstellen als einfache Liste
 
-![Browser Screenshot](http://imgur.com/RYPUKVc)
+![Browser Screenshot](http://i.imgur.com/RYPUKVc.png)
  
 11) Fixieren auf der Holzplatten
